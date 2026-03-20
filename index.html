@@ -111,8 +111,8 @@ textarea.fi{height:100px;padding:14px 16px;resize:vertical;border-radius:12px}
 .calc-note{font-size:12px;color:var(--tm);background:var(--w);border-radius:10px;padding:12px 14px;margin:14px 0;line-height:1.6}
 
 /* ─── INFO PAGE ─── */
-.info-wrap{padding:20px;max-width:700px;margin:0 auto}
-.sec-title{font-size:18px;font-weight:800;color:var(--t);margin:28px 0 16px;display:flex;align-items:center;gap:10px}
+.info-wrap{padding:20px;max-width:700px;margin:0 auto;word-break:keep-all;overflow-wrap:break-word}
+.sec-title{font-size:18px;font-weight:800;color:var(--t);margin:28px 0 16px;display:flex;align-items:center;gap:10px;word-break:keep-all}
 .sec-title::before{content:'';width:4px;height:20px;border-radius:2px;background:var(--a)}
 /* Timeline */
 .tl{margin:0 0 8px}
@@ -123,15 +123,15 @@ textarea.fi{height:100px;padding:14px 16px;resize:vertical;border-radius:12px}
 .tl-row.alert .tl-dot-wrap{background:rgba(255,159,10,.1)}
 .tl-row.alert .dot{background:#FF9F0A}
 .tl-date{font-size:11px;font-weight:700;color:var(--a);min-width:70px}
-.tl-text{font-size:13px;color:var(--ts);flex:1;line-height:1.5}
+.tl-text{font-size:13px;color:var(--ts);flex:1;line-height:1.6;word-break:keep-all}
 .tl-text b{color:var(--t)}
 /* Problem cards */
 .prob-grid{display:grid;gap:10px}
 .prob-card{background:var(--w);border-radius:12px;padding:16px 18px;box-shadow:var(--shadow);border-left:3px solid var(--a)}
 .prob-card h4{font-size:14px;font-weight:700;color:var(--t);margin-bottom:4px}
-.prob-card p{font-size:12px;color:var(--ts);line-height:1.5}
+.prob-card p{font-size:12px;color:var(--ts);line-height:1.6;word-break:keep-all}
 /* Case table */
-.case-tbl{width:100%;border-collapse:separate;border-spacing:0;font-size:12px;margin:12px 0;border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+.case-tbl-wrap{overflow-x:auto;margin:12px 0;border-radius:12px;box-shadow:var(--shadow)}.case-tbl{width:100%;border-collapse:separate;border-spacing:0;font-size:12px;min-width:440px}
 .case-tbl th{background:var(--p);color:var(--w);font-weight:600;padding:12px 10px;text-align:left;font-size:11px}
 .case-tbl td{padding:10px;background:var(--w);border-bottom:1px solid var(--bd)}
 .case-tbl tr:last-child td{border-bottom:none}
@@ -228,9 +228,10 @@ textarea.fi{height:100px;padding:14px 16px;resize:vertical;border-radius:12px}
     <button class="cta" onclick="applyNext(3)">다음</button>
   </div>
   <div id="s3" class="form-wrap hidden"><h2>본인 인증</h2><div class="desc">본인 확인을 위해 인증을 진행해주세요</div>
-    <div class="fg"><label class="fl">인증수단</label><select class="fs" id="aV"><option>카카오톡</option><option>문자인증</option></select></div>
-    <button class="cta dark" id="vBtn" onclick="doV()" style="margin-bottom:14px">인증 요청하기</button>
-    <div id="vDone" class="verify-card hidden"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#15803D" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>본인인증이 완료되었습니다</div>
+    <div class="fg"><label class="fl">휴대폰 번호</label><input class="fi" id="aVPhone" type="tel" placeholder="010-0000-0000" maxlength="13" value=""></div>
+    <button class="cta dark" id="vBtn" onclick="doV()" style="margin-bottom:14px">인증번호 받기</button>
+    <div id="vInput" class="fg hidden" style="margin-top:12px"><label class="fl">인증번호 6자리</label><div style="display:flex;gap:8px"><input class="fi" id="aVCode" placeholder="인증번호 6자리" maxlength="6" style="flex:1"><button class="cta dark" onclick="doVConfirm()" style="width:100px;margin-top:0;height:52px;font-size:14px">확인</button></div></div>
+    <div id="vDone" class="verify-card hidden"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#15803D" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>휴대폰 인증이 완료되었습니다</div>
     <button class="cta" id="s3n" onclick="applyNext(4)" disabled>다음</button>
   </div>
   <div id="s4" class="form-wrap hidden"><h2>서류 첨부</h2><div class="desc">선택사항입니다</div>
@@ -287,14 +288,14 @@ textarea.fi{height:100px;padding:14px 16px;resize:vertical;border-radius:12px}
     </div>
 
     <div class="sec-title">타 단지 사례</div>
-    <table class="case-tbl">
+    <div class="case-tbl-wrap"><table class="case-tbl">
       <tr><th>단지</th><th>유형</th><th>배상 총액</th><th>세대당</th><th>결과</th></tr>
       <tr><td>헬리오시티</td><td>등기지연</td><td>8.6억원</td><td>~172만</td><td class="win">승소</td></tr>
       <tr><td>래미안장위포레카운티</td><td>등기지연</td><td>4억원</td><td>—</td><td class="win">승소</td></tr>
       <tr><td>장위자이레디언트</td><td>등기지연</td><td>—</td><td>—</td><td class="ing">진행중</td></tr>
       <tr><td>행당두산위브</td><td>등기지연</td><td>—</td><td>—</td><td class="ing">분쟁</td></tr>
       <tr><td>공덕자이</td><td>등기지연</td><td>—</td><td>—</td><td class="ing">분쟁</td></tr>
-    </table>
+    </table></div>
 
     <div class="firm-card">
       <h3>법무법인 더 에이치 황해</h3>
@@ -319,7 +320,8 @@ function applyNext(n){
   ss(n)
 }
 function v(id){return document.getElementById(id).value.trim()!==''}
-function doV(){document.getElementById('vDone').classList.remove('hidden');document.getElementById('vBtn').disabled=true;document.getElementById('vBtn').textContent='인증 완료';document.getElementById('s3n').disabled=false}
+function doV(){if(!document.getElementById('aVPhone').value){alert('휴대폰 번호를 입력해주세요');return}document.getElementById('vInput').classList.remove('hidden');document.getElementById('vBtn').disabled=true;document.getElementById('vBtn').textContent='인증번호 발송됨'}
+function doVConfirm(){if(!document.getElementById('aVCode').value||document.getElementById('aVCode').value.length<4){alert('인증번호를 입력해주세요');return}document.getElementById('vDone').classList.remove('hidden');document.getElementById('s3n').disabled=false;document.getElementById('vInput').classList.add('hidden')}
 document.getElementById('aPhone').addEventListener('input',function(){let v=this.value.replace(/\D/g,'');if(v.length>3&&v.length<=7)v=v.slice(0,3)+'-'+v.slice(3);else if(v.length>7)v=v.slice(0,3)+'-'+v.slice(3,7)+'-'+v.slice(7,11);this.value=v})
 function uf(el,tid,zid){document.getElementById(tid).textContent=el.files[0]?el.files[0].name:'';document.getElementById(zid).classList.toggle('has-file',!!el.files[0])}
 function ufs(el,tid,zid){document.getElementById(tid).textContent=el.files.length?el.files.length+'개 파일':'';document.getElementById(zid).classList.toggle('has-file',!!el.files.length)}
