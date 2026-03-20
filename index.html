@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>주안 센트럴 파라곤 집단소송 | 법무법인 더 에이치 황해</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.3/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--p:#2C3E50;--a:#1A73E8;--bg:#F8F9FA;--w:#fff;--t:#1A202C;--ts:#4A5568;--tm:#718096;--bd:#E2E8F0;--r:12px;}
+html{scroll-behavior:smooth}
+body{font-family:'WantedSans',-apple-system,system-ui,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--t);-webkit-font-smoothing:antialiased;}
+.hidden{display:none!important}
+/* Screen container */
+.screen{min-height:100dvh;display:flex;flex-direction:column;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+@keyframes bounceIn{0%{transform:scale(0)}60%{transform:scale(1.15)}100%{transform:scale(1)}}
+@keyframes drawCheck{to{stroke-dashoffset:0}}
+/* Back bar */
+.back-bar{background:var(--w);padding:14px 20px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--bd);position:sticky;top:0;z-index:10;}
+.back-btn{background:none;border:none;font-size:15px;font-weight:600;color:var(--p);cursor:pointer;display:flex;align-items:center;gap:4px;font-family:inherit;}
+.progress{flex:1;text-align:right;font-size:12px;color:var(--tm);}
+.progress-bar{height:3px;background:#E2E8F0;border-radius:2px;margin-top:4px;}
+.progress-fill{height:100%;background:var(--a);border-radius:2px;transition:width .3s;}
+/* Hero */
+.hero{flex:1;background:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.7)),url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80') center/cover;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:40px 24px 20px;min-height:50vh;}
+.hero .pill{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:11px;font-weight:600;padding:4px 14px;border-radius:20px;margin-bottom:16px;letter-spacing:.5px;}
+.hero h1{color:#fff;font-size:26px;font-weight:800;line-height:1.35;margin-bottom:10px;word-break:keep-all;}
+.hero .sub{color:#CBD5E1;font-size:13px;margin-bottom:6px;}
+.hero .fee{color:#94A3B8;font-size:11px;margin-bottom:28px;}
+/* Menu cards */
+.menu-cards{padding:0 20px 32px;display:flex;flex-direction:column;gap:10px;max-width:600px;margin:0 auto;width:100%;}
+.menu-card{background:var(--w);border:1px solid var(--bd);border-radius:var(--r);padding:18px 20px;display:flex;align-items:center;gap:16px;cursor:pointer;transition:box-shadow .2s,transform .1s;-webkit-tap-highlight-color:transparent;}
+.menu-card:active{transform:scale(.98)}
+.menu-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.08);}
+.mc-icon{width:44px;height:44px;border-radius:10px;background:rgba(26,115,232,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.mc-icon svg{width:22px;height:22px;color:var(--a);}
+.mc-body{flex:1;}
+.mc-title{font-size:15px;font-weight:700;color:var(--p);margin-bottom:2px;}
+.mc-desc{font-size:12px;color:var(--tm);}
+.mc-arrow{color:var(--tm);font-size:18px;}
+/* Form section */
+.form-wrap{padding:28px 20px 40px;max-width:600px;margin:0 auto;width:100%;}
+.form-wrap h2{font-size:20px;font-weight:800;color:var(--p);margin-bottom:6px;}
+.form-wrap .desc{font-size:13px;color:var(--tm);margin-bottom:20px;}
+.fg{margin-bottom:16px;}
+.fl{display:block;font-size:13px;font-weight:600;color:var(--ts);margin-bottom:6px;}
+.fl .req{color:#DC2626;margin-left:2px;}
+.fi,.fs{width:100%;height:48px;border:1.5px solid var(--bd);border-radius:8px;padding:0 14px;font-size:15px;font-family:inherit;color:var(--t);background:var(--w);outline:none;transition:border-color .2s;-webkit-appearance:none;}
+.fi:focus,.fs:focus{border-color:var(--a);box-shadow:0 0 0 3px rgba(26,115,232,.1);}
+.fs{padding-right:32px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23718096' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;}
+textarea.fi{height:100px;padding:12px 14px;resize:vertical;}
+.info-box{background:#EFF6FF;border-radius:8px;padding:12px 14px;margin-bottom:18px;font-size:12px;color:var(--ts);display:flex;align-items:flex-start;gap:8px;}
+.info-box svg{flex-shrink:0;margin-top:1px;}
+.cb-wrap{display:flex;align-items:flex-start;gap:8px;cursor:pointer;margin-bottom:10px;}
+.cb-wrap input{width:18px;height:18px;accent-color:var(--p);flex-shrink:0;margin-top:1px;}
+.cb-wrap span{font-size:13px;color:var(--ts);}
+.cb-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
+/* Upload */
+.upload-box{border:1.5px dashed var(--bd);border-radius:8px;padding:24px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;margin-bottom:8px;}
+.upload-box:hover{border-color:var(--a);background:#F0F7FF;}
+.upload-box input{display:none;}
+.upload-box p{font-size:13px;color:var(--tm);margin-top:6px;}
+.upload-box p strong{color:var(--a);}
+.file-list{font-size:12px;color:var(--ts);margin-bottom:12px;}
+/* CTA */
+.cta{width:100%;height:52px;background:var(--p);color:var(--w);font-size:16px;font-weight:700;border:none;border-radius:8px;cursor:pointer;font-family:inherit;transition:background .2s;margin-top:8px;-webkit-tap-highlight-color:transparent;}
+.cta:active{background:#1A2634;}
+.cta.secondary{background:var(--a);}
+.cta:disabled{background:#93B4D1;cursor:not-allowed;}
+/* Verify */
+.verify-done{background:#F0FDF4;border:1px solid #86EFAC;border-radius:8px;padding:14px;text-align:center;font-size:14px;font-weight:600;color:#065F46;margin:12px 0;}
+/* Complete */
+.complete{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;text-align:center;}
+.check-circle{width:120px;height:120px;border-radius:50%;background:#DBEAFE;display:flex;align-items:center;justify-content:center;margin-bottom:24px;animation:bounceIn .5s ease;}
+.check-circle svg{width:48px;height:48px;}
+.check-circle svg path{stroke-dasharray:60;stroke-dashoffset:60;animation:drawCheck .6s .3s forwards;}
+.complete h2{font-size:22px;font-weight:800;color:var(--p);margin-bottom:8px;line-height:1.4;}
+.complete .ref{font-size:13px;color:var(--a);font-weight:600;margin-bottom:6px;}
+.complete .note{font-size:13px;color:var(--tm);margin-bottom:28px;}
+/* Calculator */
+.calc-result{background:var(--w);border:2px solid var(--a);border-radius:var(--r);padding:24px;text-align:center;margin:20px 0;}
+.calc-result .label{font-size:12px;color:var(--tm);margin-bottom:4px;}
+.calc-result .amount{font-size:36px;font-weight:800;color:var(--p);}
+.calc-detail{font-size:12px;color:var(--ts);margin-top:8px;}
+.calc-note{font-size:11px;color:var(--tm);background:#FFF7ED;border-radius:6px;padding:10px 12px;margin:12px 0;}
+/* Info page */
+.info-page{padding:20px;max-width:800px;margin:0 auto;}
+.info-page h2{font-size:20px;font-weight:800;color:var(--p);margin:24px 0 12px;padding-bottom:6px;border-bottom:2px solid var(--p);}
+.timeline{margin:16px 0;}
+.tl-item{display:flex;gap:12px;margin-bottom:12px;}
+.tl-dot{width:10px;height:10px;border-radius:50%;background:var(--a);margin-top:5px;flex-shrink:0;}
+.tl-date{font-size:12px;font-weight:600;color:var(--a);width:80px;flex-shrink:0;}
+.tl-text{font-size:13px;color:var(--ts);flex:1;}
+.problem-cards{display:grid;gap:10px;margin:12px 0;}
+.pc{background:var(--w);border:1px solid var(--bd);border-radius:8px;padding:14px 16px;}
+.pc-title{font-size:14px;font-weight:700;color:var(--p);margin-bottom:4px;}
+.pc-desc{font-size:12px;color:var(--ts);}
+.case-table{width:100%;border-collapse:collapse;font-size:11px;margin:12px 0;}
+.case-table th{background:#F0F2F5;font-weight:600;text-align:left;padding:8px;border-bottom:1px solid var(--bd);}
+.case-table td{padding:7px 8px;border-bottom:1px solid #F1F5F9;}
+.case-table .win{color:#065F46;font-weight:600;}
+.case-table .ongoing{color:#D97706;font-weight:600;}
+.firm-box{background:var(--p);color:var(--w);border-radius:var(--r);padding:24px;margin:20px 0;text-align:center;}
+.firm-box h3{font-size:16px;font-weight:700;margin-bottom:8px;}
+.firm-box p{font-size:12px;color:#CBD5E1;margin-bottom:4px;}
+.firm-box a{color:var(--w);text-decoration:underline;}
+/* Desktop */
+@media(min-width:768px){
+  .hero h1{font-size:34px;}
+  .menu-cards{flex-direction:row;max-width:900px;padding:0 40px 40px;}
+  .menu-card{flex:1;flex-direction:column;text-align:center;padding:24px 16px;}
+  .mc-arrow{display:none;}
+  .form-wrap{max-width:640px;}
+  .info-page{max-width:900px;padding:24px 40px;}
+  .problem-cards{grid-template-columns:1fr 1fr;}
+  .cb-grid{grid-template-columns:1fr 1fr 1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HOME ===== -->
+<div id="home" class="screen">
+  <div class="hero">
+    <span class="pill">[모집중]</span>
+    <h1>주안 센트럴 파라곤<br>입주지연·하자 집단소송</h1>
+    <div class="sub">세대당 100건+ 하자 | 4개월 입주 지연</div>
+    <div class="fee">착수금 및 성공보수는 추후 안내드립니다</div>
+  </div>
+  <div class="menu-cards">
+    <div class="menu-card" onclick="showScreen('apply')">
+      <div class="mc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
+      <div class="mc-body"><div class="mc-title">소송 신청하기</div><div class="mc-desc">1분이면 충분합니다</div></div>
+      <div class="mc-arrow">&#8250;</div>
+    </div>
+    <div class="menu-card" onclick="showScreen('calc')">
+      <div class="mc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="10" y2="10"/><line x1="14" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="10" y2="14"/><line x1="14" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="16" y2="18"/></svg></div>
+      <div class="mc-body"><div class="mc-title">지체상금 계산하기</div><div class="mc-desc">예상 배상금 확인</div></div>
+      <div class="mc-arrow">&#8250;</div>
+    </div>
+    <div class="menu-card" onclick="showScreen('info')">
+      <div class="mc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div>
+      <div class="mc-body"><div class="mc-title">사건 알아보기</div><div class="mc-desc">현재 상황과 사례</div></div>
+      <div class="mc-arrow">&#8250;</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== APPLY ===== -->
+<div id="apply" class="screen hidden">
+  <div class="back-bar">
+    <button class="back-btn" onclick="applyBack()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg> 이전</button>
+    <div class="progress"><span id="stepLabel">Step 1 / 5</span><div class="progress-bar"><div class="progress-fill" id="stepBar" style="width:20%"></div></div></div>
+  </div>
+
+  <!-- Step 1 -->
+  <div id="s1" class="form-wrap">
+    <h2>기본 정보를 입력해주세요</h2>
+    <div class="desc">소송 접수에 필요한 기본 정보입니다</div>
+    <div class="fg"><label class="fl">이름<span class="req">*</span></label><input class="fi" id="aName" placeholder="이름을 입력해주세요"></div>
+    <div class="fg"><label class="fl">연락처<span class="req">*</span></label><input class="fi" id="aPhone" type="tel" placeholder="010-0000-0000" maxlength="13"></div>
+    <div class="fg"><label class="fl">생년월일<span class="req">*</span></label><input class="fi" id="aBirth" placeholder="YYYYMMDD" maxlength="8"></div>
+    <button class="cta" onclick="applyNext(2)">다음</button>
+  </div>
+
+  <!-- Step 2 -->
+  <div id="s2" class="form-wrap hidden">
+    <h2>세대 정보를 입력해주세요</h2>
+    <div class="desc">거주하실 세대 정보를 입력해주세요</div>
+    <div class="fg"><label class="fl">동<span class="req">*</span></label><select class="fs" id="aDong"><option value="">동을 선택해주세요</option><option>101동</option><option>102동</option><option>103동</option><option>104동</option><option>105동</option><option>106동</option><option>107동</option><option>108동</option><option>109동</option><option>110동</option><option>111동</option><option>112동</option></select></div>
+    <div class="fg"><label class="fl">호수<span class="req">*</span></label><input class="fi" id="aHo" placeholder="호수를 입력해주세요" type="number"></div>
+    <div class="fg"><label class="fl">전용면적</label><select class="fs" id="aArea"><option value="">선택 (선택사항)</option><option>51A</option><option>51B</option><option>59</option><option>62A</option><option>62B</option><option>76</option><option>84</option></select></div>
+    <button class="cta" onclick="applyNext(3)">다음</button>
+  </div>
+
+  <!-- Step 3 -->
+  <div id="s3" class="form-wrap hidden">
+    <h2>본인 인증</h2>
+    <div class="desc">본인 확인을 위해 인증을 진행해주세요</div>
+    <div class="fg"><label class="fl">인증수단</label><select class="fs" id="aVerify"><option>카카오톡</option><option>문자인증</option></select></div>
+    <button class="cta secondary" id="verifyBtn" onclick="doVerify()" style="margin-bottom:12px;">인증 요청하기</button>
+    <div id="verifyDone" class="verify-done hidden"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#065F46" stroke-width="2" style="vertical-align:middle;margin-right:4px;"><path d="M20 6L9 17l-5-5"/></svg>본인인증이 완료되었습니다</div>
+    <button class="cta" id="s3next" onclick="applyNext(4)" disabled>다음</button>
+  </div>
+
+  <!-- Step 4 -->
+  <div id="s4" class="form-wrap hidden">
+    <h2>서류를 첨부해주세요 (선택)</h2>
+    <div class="info-box"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1A73E8" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span>지금 첨부하지 않아도 됩니다. 추후 요청 시 제출해주시면 됩니다.</span></div>
+    <div class="fg"><label class="fl">분양계약서 사본</label><div class="upload-box" onclick="this.querySelector('input').click()"><input type="file" accept="image/*,.pdf" onchange="showFile(this,'f1name')"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#718096" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg><p><strong>파일 선택</strong> 또는 드래그</p></div><div id="f1name" class="file-list"></div></div>
+    <div class="fg"><label class="fl">단지 내 하자 사진</label><div class="upload-box" onclick="this.querySelector('input').click()"><input type="file" accept="image/*" multiple onchange="showFiles(this,'f2name')"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#718096" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><p><strong>사진 선택</strong> (여러장 가능)</p></div><div id="f2name" class="file-list"></div></div>
+    <div class="cb-wrap"><input type="checkbox" id="agreePrivacy"><span>개인정보 수집·이용에 동의합니다 <span style="color:#DC2626;">*</span></span></div>
+    <button class="cta" onclick="applyNext(5)">신청 완료하기</button>
+  </div>
+
+  <!-- Step 5 -->
+  <div id="s5" class="complete hidden">
+    <div class="check-circle"><svg viewBox="0 0 24 24" fill="none" stroke="#1A73E8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+    <h2>접수가 완료되었습니다</h2>
+    <div class="ref" id="refNo"></div>
+    <div class="note">담당 변호사가 영업일 기준 3일 내<br>연락드리겠습니다</div>
+    <button class="cta" onclick="showScreen('home')" style="max-width:280px;">홈으로</button>
+  </div>
+</div>
+
+<!-- ===== CALCULATOR ===== -->
+<div id="calc" class="screen hidden">
+  <div class="back-bar"><button class="back-btn" onclick="showScreen('home')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg> 뒤로</button></div>
+  <div class="form-wrap">
+    <h2>나의 예상 배상금 계산기</h2>
+    <div class="desc">분양가와 지연일수를 입력하면 예상 배상금을 계산합니다</div>
+    <div class="fg"><label class="fl">분양가 (만원)</label><input class="fi" id="cPrice" type="number" placeholder="예: 35000" oninput="calcDamage()"></div>
+    <div class="fg"><label class="fl">입주 지연일수</label><input class="fi" id="cDays" type="number" value="120" oninput="calcDamage()"></div>
+    <div class="fg"><label class="fl">지체상금 요율</label><select class="fs" id="cRate" onchange="calcDamage()"><option value="0.001">1/1000 (공사계약 표준)</option><option value="0.0015">1.5/1000</option><option value="0.002">2/1000</option><option value="0.003">3/1000</option></select></div>
+    <div class="calc-result">
+      <div class="label">예상 총 배상금</div>
+      <div class="amount" id="calcTotal">0만원</div>
+      <div class="calc-detail" id="calcDetail">분양가를 입력해주세요</div>
+    </div>
+    <div class="calc-note">실제 배상금은 분양계약 조건과 법원 판단에 따라 달라질 수 있습니다. 정확한 산정을 위해 무료 상담을 신청하세요.</div>
+    <button class="cta" onclick="showScreen('apply')">소송 신청하기</button>
+  </div>
+</div>
+
+<!-- ===== INFO ===== -->
+<div id="info" class="screen hidden">
+  <div class="back-bar"><button class="back-btn" onclick="showScreen('home')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg> 뒤로</button></div>
+  <div class="info-page">
+    <h2>주안 센트럴 파라곤 현재 상황</h2>
+    <div class="timeline">
+      <div class="tl-item"><div class="tl-date">2023.06</div><div class="tl-dot"></div><div class="tl-text">분양 시작 (1,321가구, 12개동, 지상40층)</div></div>
+      <div class="tl-item"><div class="tl-date">2025.09</div><div class="tl-dot"></div><div class="tl-text">공사비 갈등 → <b>공사 중단</b></div></div>
+      <div class="tl-item"><div class="tl-date">2025.12</div><div class="tl-dot"></div><div class="tl-text">당초 입주 예정일 (미이행)</div></div>
+      <div class="tl-item"><div class="tl-date">2026.01</div><div class="tl-dot"></div><div class="tl-text">임시사용승인 전제 입주 강행 논란</div></div>
+      <div class="tl-item"><div class="tl-date">2026.02</div><div class="tl-dot"></div><div class="tl-text">1차 사전점검 <b>취소</b></div></div>
+      <div class="tl-item"><div class="tl-date">2026.02.28</div><div class="tl-dot"></div><div class="tl-text">2차 사전점검 진행 — <b>하자 대거 발견</b> (세대당 100~120건)</div></div>
+      <div class="tl-item"><div class="tl-date">2026.03.31</div><div class="tl-dot" style="background:#D97706;"></div><div class="tl-text"><b>연기된 입주 예정일</b></div></div>
+    </div>
+
+    <h2>주요 문제점</h2>
+    <div class="problem-cards">
+      <div class="pc"><div class="pc-title">입주 지연 4개월+</div><div class="pc-desc">당초 2025.12 → 2026.3.31. 공사비 증액 갈등으로 공사 중단 이력</div></div>
+      <div class="pc"><div class="pc-title">세대당 100건+ 하자</div><div class="pc-desc">바닥 수평 오차, 창호 기밀 불량, 누수, 곰팡이, 타일 파손 등</div></div>
+      <div class="pc"><div class="pc-title">주차장 규격 미달 의혹</div><div class="pc-desc">주차구획 규격 미달, 장애인 구역 협소, 사전점검 중 주차장 통제</div></div>
+      <div class="pc"><div class="pc-title">사전점검 방해</div><div class="pc-desc">외부 점검업체 출입 제한, "필요 이상 하자 잡지 말라" 공지</div></div>
+      <div class="pc"><div class="pc-title">가구당 9,000만원+ 추가부담금</div><div class="pc-desc">라인건설 추산 지체상금 + 연체이자 + 공사비 증액분</div></div>
+    </div>
+
+    <h2>타 단지 사례 — 얼마 받았나</h2>
+    <table class="case-table">
+      <tr><th>단지</th><th>유형</th><th>참여자</th><th>배상 총액</th><th>세대당</th><th>결과</th></tr>
+      <tr><td>헬리오시티</td><td>등기지연</td><td>500여명</td><td>8.6억원</td><td>~172만</td><td class="win">승소</td></tr>
+      <tr><td>래미안장위포레카운티</td><td>등기지연</td><td>—</td><td>4억원</td><td>—</td><td class="win">승소</td></tr>
+      <tr><td>장위자이레디언트</td><td>등기지연</td><td>모집중</td><td>—</td><td>—</td><td class="ongoing">진행중</td></tr>
+      <tr><td>행당두산위브</td><td>등기지연</td><td>—</td><td>—</td><td>—</td><td class="ongoing">분쟁</td></tr>
+      <tr><td>공덕자이</td><td>등기지연</td><td>—</td><td>—</td><td>—</td><td class="ongoing">분쟁</td></tr>
+    </table>
+
+    <div class="firm-box">
+      <h3>법무법인 더 에이치 황해</h3>
+      <p>하자소송 압도적 1위 | 변호사 17명</p>
+      <p>SKT, 쿠팡, 포항지진, 코로나, 차액가맹금 등 소비자 집단소송 다수</p>
+      <p style="margin-top:8px;"><a href="tel:032-251-1000">032-251-1000</a> | 인천 미추홀구 학익로 60</p>
+    </div>
+    <button class="cta" onclick="showScreen('apply')">소송 신청하기</button>
+  </div>
+</div>
+
+<script>
+let curStep=1;
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');if(id==='apply'){curStep=1;showStep(1);}window.scrollTo(0,0);}
+
+function showStep(n){for(let i=1;i<=5;i++)document.getElementById('s'+i).classList.toggle('hidden',i!==n);document.getElementById('stepLabel').textContent='Step '+n+' / 5';document.getElementById('stepBar').style.width=(n*20)+'%';curStep=n;}
+
+function applyBack(){if(curStep>1)showStep(curStep-1);else showScreen('home');}
+
+function applyNext(n){
+  if(n===2){if(!document.getElementById('aName').value||!document.getElementById('aPhone').value||!document.getElementById('aBirth').value){alert('필수 항목을 모두 입력해주세요');return;}}
+  if(n===3){if(!document.getElementById('aDong').value||!document.getElementById('aHo').value){alert('동과 호수를 입력해주세요');return;}}
+  if(n===5){if(!document.getElementById('agreePrivacy').checked){alert('개인정보 동의를 체크해주세요');return;}document.getElementById('refNo').textContent='접수번호: JCP-2026-'+String(Math.floor(10000+Math.random()*90000));}
+  showStep(n);
+}
+
+function doVerify(){document.getElementById('verifyDone').classList.remove('hidden');document.getElementById('verifyBtn').disabled=true;document.getElementById('verifyBtn').textContent='인증 완료';document.getElementById('s3next').disabled=false;}
+
+// Phone format
+document.getElementById('aPhone').addEventListener('input',function(){let v=this.value.replace(/\D/g,'');if(v.length>3&&v.length<=7)v=v.slice(0,3)+'-'+v.slice(3);else if(v.length>7)v=v.slice(0,3)+'-'+v.slice(3,7)+'-'+v.slice(7,11);this.value=v;});
+
+// File display
+function showFile(input,targetId){let el=document.getElementById(targetId);if(input.files[0])el.textContent=input.files[0].name;else el.textContent='';}
+function showFiles(input,targetId){let el=document.getElementById(targetId);el.textContent=input.files.length?input.files.length+'개 파일 선택됨':'';}
+
+// Calculator
+function calcDamage(){
+  let price=parseFloat(document.getElementById('cPrice').value)||0;
+  let days=parseFloat(document.getElementById('cDays').value)||0;
+  let rate=parseFloat(document.getElementById('cRate').value)||0.001;
+  let penalty=Math.round(price*rate*days);
+  let interest=Math.round(price*0.3*0.05/365*days);
+  let total=penalty+interest;
+  document.getElementById('calcTotal').textContent=total>0?'약 '+total.toLocaleString()+'만원':'0만원';
+  document.getElementById('calcDetail').textContent=total>0?'지체상금 '+penalty.toLocaleString()+'만원 + 연체이자 '+interest.toLocaleString()+'만원':'분양가를 입력해주세요';
+}
+calcDamage();
+</script>
+</body>
+</html>

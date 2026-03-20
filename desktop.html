@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>주안 센트럴 파라곤 집단소송</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.3/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px}
+body{font-family:'Wanted Sans Variable','Wanted Sans',system-ui,-apple-system,sans-serif;background:#F8F9FA;color:#2C3E50;min-height:100vh}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+input,select,textarea{font-family:inherit;font-size:15px}
+.container{max-width:1200px;min-width:768px;margin:0 auto}
+.screen{display:none;animation:slideIn .3s ease}
+.screen.active{display:block}
+@keyframes slideIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+@keyframes slideBack{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
+@keyframes bounce{0%,20%,50%,80%,100%{transform:translateY(0)}40%{transform:translateY(-20px)}60%{transform:translateY(-10px)}}
+.slide-back{animation:slideBack .3s ease}
+
+/* Hero */
+.hero{position:relative;height:400px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80') center/cover no-repeat}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.5) 0%,rgba(0,0,0,.7) 100%)}
+.hero *{position:relative;z-index:1}
+.pill{display:inline-block;background:#1A73E8;color:#fff;font-size:13px;font-weight:600;padding:5px 16px;border-radius:20px;margin-bottom:16px}
+.hero-title{font-size:38px;font-weight:800;color:#fff;line-height:1.3;margin-bottom:14px;white-space:pre-line}
+.hero-sub{font-size:16px;color:#CBD5E1;margin-bottom:8px}
+.hero-fee{font-size:12px;color:#94A3B8}
+.action-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:40px;max-width:1000px;margin:-40px auto 0;position:relative;z-index:2}
+.action-card{background:#fff;border-radius:16px;padding:28px 24px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;box-shadow:0 4px 16px rgba(0,0,0,.08);transition:transform .2s,box-shadow .2s;cursor:pointer}
+.action-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.12)}
+.action-card .icon-wrap{width:56px;height:56px;border-radius:14px;background:#EBF2FF;display:flex;align-items:center;justify-content:center}
+.action-card .icon-wrap svg{width:28px;height:28px;color:#1A73E8}
+.action-card .card-title{font-size:18px;font-weight:700;color:#2C3E50}
+.action-card .card-desc{font-size:14px;color:#64748B}
+.action-card .arrow{display:none}
+
+/* Top bar */
+.topbar{display:flex;align-items:center;padding:18px 40px;background:#fff;border-bottom:1px solid #E2E8F0;position:sticky;top:0;z-index:100}
+.topbar .back-btn{display:flex;align-items:center;gap:6px;font-size:15px;color:#2C3E50;font-weight:600;transition:color .2s}
+.topbar .back-btn:hover{color:#1A73E8}
+.topbar .back-btn svg{width:20px;height:20px}
+.topbar .title{flex:1;text-align:center;font-size:17px;font-weight:700;color:#2C3E50;margin-right:60px}
+
+/* Progress */
+.progress-bar{padding:20px 40px;background:#fff;max-width:700px;margin:0 auto}
+.progress-track{height:4px;background:#E2E8F0;border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;background:#1A73E8;border-radius:2px;transition:width .3s}
+.progress-label{font-size:13px;color:#64748B;margin-top:8px}
+
+/* Form - 2 column layout */
+.form-wrapper{max-width:900px;margin:0 auto;padding:30px 40px}
+.form-2col{display:grid;grid-template-columns:1fr 1.2fr;gap:40px;align-items:start}
+.form-info{padding:30px 0}
+.form-info .form-title{font-size:24px;font-weight:700;color:#2C3E50;margin-bottom:10px}
+.form-info .form-desc{font-size:15px;color:#64748B;line-height:1.6}
+.form-fields{background:#fff;border-radius:16px;padding:30px;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.field{margin-bottom:20px}
+.field label{display:block;font-size:14px;font-weight:600;color:#2C3E50;margin-bottom:6px}
+.field label .req{color:#DC2626;margin-left:2px}
+.field input,.field select{width:100%;padding:12px 14px;border:1.5px solid #D1D5DB;border-radius:10px;font-size:15px;background:#fff;transition:border-color .2s;color:#2C3E50}
+.field input:focus,.field select:focus{outline:none;border-color:#1A73E8;box-shadow:0 0 0 3px rgba(26,115,232,.12)}
+.field input::placeholder{color:#9CA3AF}
+.btn-primary{width:100%;padding:14px;background:#1A73E8;color:#fff;font-size:16px;font-weight:700;border-radius:12px;transition:background .2s}
+.btn-primary:hover{background:#1557B0}
+.btn-primary:disabled{background:#94A3B8;cursor:not-allowed}
+.btn-secondary{width:100%;padding:14px;background:#fff;color:#1A73E8;font-size:16px;font-weight:700;border-radius:12px;border:1.5px solid #1A73E8;transition:background .2s}
+.btn-secondary:hover{background:#EBF2FF}
+
+/* File upload */
+.upload-box{border:2px dashed #D1D5DB;border-radius:12px;padding:28px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;margin-bottom:8px}
+.upload-box:hover{border-color:#1A73E8;background:#FAFBFF}
+.upload-box svg{width:32px;height:32px;color:#94A3B8;margin-bottom:8px}
+.upload-box .upload-label{font-size:14px;color:#64748B}
+.upload-box .upload-hint{font-size:12px;color:#94A3B8;margin-top:4px}
+.upload-box input[type=file]{display:none}
+.file-name{font-size:13px;color:#1A73E8;margin-top:4px}
+
+/* Checkbox */
+.checkbox-wrap{display:flex;align-items:flex-start;gap:10px;margin-bottom:20px}
+.checkbox-wrap input[type=checkbox]{width:20px;height:20px;accent-color:#1A73E8;margin-top:2px;flex-shrink:0}
+.checkbox-wrap label{font-size:14px;color:#2C3E50;line-height:1.4}
+
+/* Completion */
+.complete-screen{text-align:center;padding:80px 20px}
+.check-icon{width:80px;height:80px;margin:0 auto 24px;animation:bounce 1s ease}
+.check-icon svg{width:80px;height:80px;color:#1A73E8}
+.complete-title{font-size:26px;font-weight:700;color:#2C3E50;margin-bottom:14px}
+.complete-ref{font-size:16px;color:#64748B;margin-bottom:8px}
+.complete-ref strong{color:#1A73E8}
+.complete-msg{font-size:15px;color:#94A3B8;margin-bottom:36px}
+.complete-screen .btn-primary{max-width:300px;margin:0 auto}
+
+/* Verification */
+.verify-box{background:#fff;border-radius:12px;padding:24px;border:1.5px solid #E2E8F0;margin-bottom:20px}
+.verify-success{display:none;align-items:center;gap:8px;padding:12px 16px;background:#ECFDF5;border-radius:10px;margin-top:12px;font-size:14px;color:#059669;font-weight:600}
+.verify-success svg{width:20px;height:20px;color:#059669}
+
+/* Calculator */
+.calc-wrapper{max-width:800px;margin:0 auto;padding:40px}
+.calc-2col{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.calc-title{font-size:26px;font-weight:700;color:#2C3E50;margin-bottom:8px}
+.calc-desc{font-size:15px;color:#64748B;margin-bottom:28px}
+.calc-inputs{background:#fff;border-radius:16px;padding:28px;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.result-card{background:#fff;border-radius:16px;padding:36px 28px;text-align:center;box-shadow:0 4px 16px rgba(0,0,0,.08)}
+.result-label{font-size:15px;color:#64748B;margin-bottom:10px}
+.result-amount{font-size:36px;font-weight:800;color:#2C3E50;margin-bottom:14px}
+.result-detail{font-size:14px;color:#94A3B8;line-height:1.6}
+.calc-notice{font-size:13px;color:#94A3B8;line-height:1.6;padding:18px;background:#fff;border-radius:12px;margin:24px 0}
+.calc-bottom{max-width:800px;margin:0 auto;padding:0 40px 40px}
+
+/* Info page - 2 column */
+.info-wrapper{max-width:1100px;margin:0 auto;padding:40px}
+.info-2col{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.info-full{grid-column:1/-1}
+.section-title{font-size:22px;font-weight:700;color:#2C3E50;margin-bottom:20px}
+
+/* Timeline */
+.timeline{position:relative;padding-left:28px;margin-bottom:16px}
+.timeline::before{content:'';position:absolute;left:8px;top:4px;bottom:4px;width:2px;background:#E2E8F0}
+.tl-item{position:relative;margin-bottom:18px}
+.tl-item::before{content:'';position:absolute;left:-24px;top:6px;width:12px;height:12px;border-radius:50%;background:#1A73E8;border:2px solid #fff;box-shadow:0 0 0 2px #1A73E8}
+.tl-item.future::before{background:#E2E8F0;box-shadow:0 0 0 2px #E2E8F0}
+.tl-date{font-size:13px;font-weight:700;color:#1A73E8;margin-bottom:2px}
+.tl-item.future .tl-date{color:#94A3B8}
+.tl-text{font-size:14px;color:#2C3E50;line-height:1.4}
+
+/* Issue cards */
+.issues-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+.issue-card{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 4px rgba(0,0,0,.04);transition:box-shadow .2s}
+.issue-card:hover{box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.issue-card .issue-num{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;background:#1A73E8;color:#fff;font-size:12px;font-weight:700;border-radius:6px;margin-bottom:10px}
+.issue-card .issue-title{font-size:16px;font-weight:700;color:#2C3E50;margin-bottom:6px}
+.issue-card .issue-desc{font-size:13px;color:#64748B;line-height:1.5}
+
+/* Table */
+.case-table{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:24px;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.04)}
+.case-table th{background:#F1F5F9;padding:12px 14px;font-weight:700;color:#2C3E50;text-align:left}
+.case-table td{padding:12px 14px;border-top:1px solid #F1F5F9;color:#2C3E50}
+.case-table tr:hover td{background:#FAFBFF}
+.badge{display:inline-block;font-size:12px;padding:3px 10px;border-radius:10px;font-weight:600}
+.badge-win{background:#ECFDF5;color:#059669}
+.badge-progress{background:#EBF2FF;color:#1A73E8}
+.badge-dispute{background:#FEF3C7;color:#D97706}
+
+/* Firm */
+.firm-card{background:#fff;border-radius:16px;padding:28px;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.firm-name{font-size:20px;font-weight:800;color:#2C3E50;margin-bottom:12px}
+.firm-detail{font-size:15px;color:#64748B;line-height:1.7;margin-bottom:18px}
+.firm-phone{display:inline-flex;align-items:center;gap:8px;font-size:17px;font-weight:700;color:#1A73E8;transition:opacity .2s}
+.firm-phone:hover{opacity:.8}
+.firm-phone svg{width:20px;height:20px}
+
+/* Step content inside form-wrapper */
+.step-content{display:none}
+.step-content.active-step{display:block}
+</style>
+</head>
+<body>
+
+<!-- HOME SCREEN -->
+<div id="home" class="screen active">
+  <div class="hero">
+    <span class="pill">[모집중]</span>
+    <h1 class="hero-title">주안 센트럴 파라곤
+입주지연·하자 집단소송</h1>
+    <p class="hero-sub">세대당 100건+ 하자 | 4개월 입주 지연</p>
+    <p class="hero-fee">착수금 및 성공보수는 추후 안내드립니다</p>
+  </div>
+  <div class="action-cards">
+    <div class="action-card" onclick="showScreen('apply')">
+      <div class="icon-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      </div>
+      <div class="card-title">소송 신청하기</div>
+      <div class="card-desc">1분이면 충분합니다</div>
+    </div>
+    <div class="action-card" onclick="showScreen('calc')">
+      <div class="icon-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="10" y2="10"/><line x1="14" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="10" y2="14"/><line x1="14" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="16" y2="18"/></svg>
+      </div>
+      <div class="card-title">지체상금 계산하기</div>
+      <div class="card-desc">예상 배상금 확인</div>
+    </div>
+    <div class="action-card" onclick="showScreen('info')">
+      <div class="icon-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+      </div>
+      <div class="card-title">사건 알아보기</div>
+      <div class="card-desc">현재 상황과 사례</div>
+    </div>
+  </div>
+  <div style="height:60px"></div>
+</div>
+
+<!-- APPLY SCREEN -->
+<div id="apply" class="screen">
+  <div class="topbar">
+    <button class="back-btn" onclick="goHome()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      뒤로
+    </button>
+    <span class="title">소송 신청</span>
+  </div>
+  <div class="progress-bar">
+    <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:20%"></div></div>
+    <div class="progress-label" id="progressLabel">Step 1 / 5</div>
+  </div>
+
+  <!-- Step 1 -->
+  <div class="form-wrapper step-content active-step" id="step1">
+    <div class="form-2col">
+      <div class="form-info">
+        <h2 class="form-title">기본 정보를 입력해주세요</h2>
+        <p class="form-desc">소송 접수를 위한 기본 정보입니다.<br>입력하신 정보는 안전하게 보호됩니다.</p>
+      </div>
+      <div class="form-fields">
+        <div class="field">
+          <label>이름<span class="req">*</span></label>
+          <input type="text" id="name" placeholder="홍길동">
+        </div>
+        <div class="field">
+          <label>연락처<span class="req">*</span></label>
+          <input type="tel" id="phone" placeholder="010-0000-0000" maxlength="13">
+        </div>
+        <div class="field">
+          <label>생년월일<span class="req">*</span></label>
+          <input type="text" id="birth" placeholder="YYYYMMDD 또는 YYYY-MM-DD" maxlength="10">
+        </div>
+        <button class="btn-primary" onclick="nextStep(1)">다음</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 2 -->
+  <div class="form-wrapper step-content" id="step2">
+    <div class="form-2col">
+      <div class="form-info">
+        <h2 class="form-title">세대 정보를 입력해주세요</h2>
+        <p class="form-desc">소유하고 계신 세대의 정보를 입력해주세요.</p>
+      </div>
+      <div class="form-fields">
+        <div class="field">
+          <label>동<span class="req">*</span></label>
+          <select id="dong">
+            <option value="">선택해주세요</option>
+            <option>101동</option><option>102동</option><option>103동</option><option>104동</option>
+            <option>105동</option><option>106동</option><option>107동</option><option>108동</option>
+            <option>109동</option><option>110동</option><option>111동</option><option>112동</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>호수<span class="req">*</span></label>
+          <input type="text" id="ho" placeholder="예: 1201" inputmode="numeric">
+        </div>
+        <div class="field">
+          <label>전용면적</label>
+          <select id="area">
+            <option value="">선택해주세요 (선택)</option>
+            <option>51A</option><option>51B</option><option>59</option>
+            <option>62A</option><option>62B</option><option>76</option><option>84</option>
+          </select>
+        </div>
+        <button class="btn-primary" onclick="nextStep(2)">다음</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 3 -->
+  <div class="form-wrapper step-content" id="step3">
+    <div class="form-2col">
+      <div class="form-info">
+        <h2 class="form-title">본인 인증</h2>
+        <p class="form-desc">본인 확인을 위해 인증을 진행해주세요.</p>
+      </div>
+      <div class="form-fields">
+        <div class="verify-box">
+          <div class="field">
+            <label>인증수단</label>
+            <select id="verifyMethod">
+              <option>카카오톡</option>
+              <option>문자인증</option>
+            </select>
+          </div>
+          <button class="btn-secondary" onclick="doVerify()" id="verifyBtn">인증 요청하기</button>
+          <div class="verify-success" id="verifySuccess">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            인증이 완료되었습니다
+          </div>
+        </div>
+        <button class="btn-primary" onclick="nextStep(3)" id="step3Next" disabled>다음</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 4 -->
+  <div class="form-wrapper step-content" id="step4">
+    <div class="form-2col">
+      <div class="form-info">
+        <h2 class="form-title">서류를 첨부해주세요 (선택)</h2>
+        <p class="form-desc">지금 첨부하지 않아도 됩니다.<br>추후 요청 시 제출해주시면 됩니다.</p>
+      </div>
+      <div class="form-fields">
+        <div class="field">
+          <label>분양계약서 사본</label>
+          <div class="upload-box" onclick="this.querySelector('input').click()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <div class="upload-label">클릭하여 파일 첨부</div>
+            <div class="upload-hint">이미지 또는 PDF</div>
+            <input type="file" accept="image/*,.pdf" onchange="showFileName(this,'contract-name')">
+          </div>
+          <div class="file-name" id="contract-name"></div>
+        </div>
+        <div class="field">
+          <label>단지 내 하자 사진</label>
+          <div class="upload-box" onclick="this.querySelector('input').click()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <div class="upload-label">클릭하여 사진 첨부</div>
+            <div class="upload-hint">여러 장 가능</div>
+            <input type="file" accept="image/*" multiple onchange="showFileName(this,'photo-name')">
+          </div>
+          <div class="file-name" id="photo-name"></div>
+        </div>
+        <div class="checkbox-wrap">
+          <input type="checkbox" id="privacy" onchange="toggleSubmit()">
+          <label for="privacy">개인정보 수집 및 이용에 동의합니다<span class="req">*</span></label>
+        </div>
+        <button class="btn-primary" onclick="nextStep(4)" id="submitBtn" disabled>신청 완료하기</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 5 -->
+  <div class="form-wrapper step-content" id="step5">
+    <div class="complete-screen">
+      <div class="check-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11.5 14.5 16 9.5"/></svg>
+      </div>
+      <h2 class="complete-title">접수가 완료되었습니다</h2>
+      <p class="complete-ref">접수번호: <strong id="refNum"></strong></p>
+      <p class="complete-msg">담당 변호사가 영업일 기준 3일 내 연락드리겠습니다</p>
+      <button class="btn-primary" onclick="goHome()">홈으로</button>
+    </div>
+  </div>
+</div>
+
+<!-- CALCULATOR SCREEN -->
+<div id="calc" class="screen">
+  <div class="topbar">
+    <button class="back-btn" onclick="goHome()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      뒤로
+    </button>
+    <span class="title">배상금 계산기</span>
+  </div>
+  <div class="calc-wrapper">
+    <h2 class="calc-title">나의 예상 배상금 계산기</h2>
+    <p class="calc-desc">분양가와 지연일수를 입력하면 예상 배상금을 계산합니다</p>
+    <div class="calc-2col">
+      <div class="calc-inputs">
+        <div class="field">
+          <label>분양가 (만원)</label>
+          <input type="number" id="price" placeholder="예: 35000" oninput="calculate()">
+        </div>
+        <div class="field">
+          <label>입주 지연일수</label>
+          <input type="number" id="days" value="120" oninput="calculate()">
+        </div>
+        <div class="field">
+          <label>지체상금 요율</label>
+          <select id="rate" onchange="calculate()">
+            <option value="0.001">1/1000 (공사계약 표준)</option>
+            <option value="0.0015">1.5/1000</option>
+            <option value="0.002">2/1000</option>
+            <option value="0.003">3/1000</option>
+          </select>
+        </div>
+      </div>
+      <div class="result-card">
+        <div class="result-label">예상 총 배상금</div>
+        <div class="result-amount" id="totalResult">약 0만원</div>
+        <div class="result-detail" id="resultDetail">지체상금 0만원 + 연체이자 0만원</div>
+      </div>
+    </div>
+  </div>
+  <div class="calc-bottom">
+    <div class="calc-notice">
+      실제 배상금은 분양계약 조건과 법원 판단에 따라 달라질 수 있습니다.<br>
+      정확한 산정을 위해 무료 상담을 신청하세요.
+    </div>
+    <button class="btn-primary" style="max-width:400px" onclick="showScreen('apply')">소송 신청하기</button>
+  </div>
+</div>
+
+<!-- INFO SCREEN -->
+<div id="info" class="screen">
+  <div class="topbar">
+    <button class="back-btn" onclick="goHome()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      뒤로
+    </button>
+    <span class="title">사건 정보</span>
+  </div>
+  <div class="info-wrapper">
+    <div class="info-2col">
+      <!-- Left col: Timeline -->
+      <div>
+        <h2 class="section-title">주안 센트럴 파라곤 현재 상황</h2>
+        <div class="timeline">
+          <div class="tl-item"><div class="tl-date">2023.06</div><div class="tl-text">분양 시작 (1,321가구)</div></div>
+          <div class="tl-item"><div class="tl-date">2025.09</div><div class="tl-text">공사비 갈등 → 공사 중단</div></div>
+          <div class="tl-item"><div class="tl-date">2025.12</div><div class="tl-text">당초 입주 예정일 (미이행)</div></div>
+          <div class="tl-item"><div class="tl-date">2026.01</div><div class="tl-text">임시사용승인 전제 입주 강행 논란</div></div>
+          <div class="tl-item"><div class="tl-date">2026.02</div><div class="tl-text">1차 사전점검 취소</div></div>
+          <div class="tl-item"><div class="tl-date">2026.02.28~03.02</div><div class="tl-text">2차 사전점검 (하자 대거 발견)</div></div>
+          <div class="tl-item future"><div class="tl-date">2026.03.31</div><div class="tl-text">연기된 입주 예정일</div></div>
+        </div>
+      </div>
+      <!-- Right col: Firm -->
+      <div>
+        <h2 class="section-title">우리 법인 소개</h2>
+        <div class="firm-card">
+          <div class="firm-name">법무법인 더 에이치 황해</div>
+          <div class="firm-detail">
+            하자소송 압도적 1위, 변호사 17명<br>
+            소비자 집단소송 다수 수행<br>
+            (SKT, 쿠팡, 포항지진, 코로나 손실보상, 차액가맹금)
+          </div>
+          <a href="tel:032-251-1000" class="firm-phone">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            032-251-1000
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Full width: Issues -->
+    <div style="margin-top:32px">
+      <h2 class="section-title">주요 문제점</h2>
+      <div class="issues-grid">
+        <div class="issue-card">
+          <div class="issue-num">1</div>
+          <div class="issue-title">입주 지연 (4개월+)</div>
+          <div class="issue-desc">당초 2025.12 → 2026.3.31, 공사비 증액 갈등으로 공사 중단 이력</div>
+        </div>
+        <div class="issue-card">
+          <div class="issue-num">2</div>
+          <div class="issue-title">대규모 하자</div>
+          <div class="issue-desc">세대당 평균 100~120건 (바닥 수평, 창호, 누수, 곰팡이, 타일 파손)</div>
+        </div>
+        <div class="issue-card">
+          <div class="issue-num">3</div>
+          <div class="issue-title">주차장 규격 미달</div>
+          <div class="issue-desc">주차구획 규격 미달 의혹, 장애인 구역 협소</div>
+        </div>
+        <div class="issue-card">
+          <div class="issue-num">4</div>
+          <div class="issue-title">사전점검 방해</div>
+          <div class="issue-desc">외부 점검업체 출입 제한, "필요 이상 하자 잡지 말라" 공지</div>
+        </div>
+        <div class="issue-card" style="grid-column:1/-1;max-width:50%">
+          <div class="issue-num">5</div>
+          <div class="issue-title">추가부담금</div>
+          <div class="issue-desc">라인건설 추산 가구당 9,000만원+ (지체상금+연체이자+공사비증액)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Full width: Case table -->
+    <div style="margin-top:32px">
+      <h2 class="section-title">타 단지 사례 (얼마 받았나)</h2>
+      <table class="case-table">
+        <thead>
+          <tr><th>단지</th><th>유형</th><th>참여자</th><th>배상 총액</th><th>세대당 평균</th><th>결과</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>헬리오시티</td><td>등기지연</td><td>500여명</td><td>8.6억원</td><td>~172만원</td><td><span class="badge badge-win">승소</span></td></tr>
+          <tr><td>래미안장위포레카운티</td><td>등기지연</td><td>-</td><td>4억원</td><td>-</td><td><span class="badge badge-win">승소</span></td></tr>
+          <tr><td>장위자이레디언트</td><td>등기지연</td><td>모집중</td><td>-</td><td>-</td><td><span class="badge badge-progress">진행중</span></td></tr>
+          <tr><td>행당두산위브</td><td>등기지연</td><td>-</td><td>-</td><td>-</td><td><span class="badge badge-dispute">분쟁</span></td></tr>
+          <tr><td>공덕자이</td><td>등기지연</td><td>-</td><td>-</td><td>-</td><td><span class="badge badge-dispute">분쟁</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+let currentStep = 1;
+let verified = false;
+
+function showScreen(id, back) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active','slide-back'));
+  const el = document.getElementById(id);
+  if (back) el.classList.add('slide-back');
+  el.classList.add('active');
+  window.scrollTo(0, 0);
+  if (id === 'apply') {
+    currentStep = 1;
+    verified = false;
+    updateStep();
+  }
+}
+
+function goHome() {
+  showScreen('home', true);
+}
+
+function updateStep() {
+  document.querySelectorAll('.step-content').forEach(el => {
+    el.style.display = 'none';
+    el.classList.remove('active-step');
+  });
+  const el = document.getElementById('step' + currentStep);
+  el.style.display = 'block';
+  el.classList.add('active-step');
+  document.getElementById('progressFill').style.width = (currentStep * 20) + '%';
+  document.getElementById('progressLabel').textContent = 'Step ' + currentStep + ' / 5';
+}
+
+function nextStep(from) {
+  if (from === 1) {
+    if (!document.getElementById('name').value || !document.getElementById('phone').value || !document.getElementById('birth').value) {
+      alert('필수 항목을 모두 입력해주세요.');
+      return;
+    }
+  }
+  if (from === 2) {
+    if (!document.getElementById('dong').value || !document.getElementById('ho').value) {
+      alert('필수 항목을 모두 입력해주세요.');
+      return;
+    }
+  }
+  if (from === 3 && !verified) {
+    alert('본인 인증을 완료해주세요.');
+    return;
+  }
+  if (from === 4) {
+    if (!document.getElementById('privacy').checked) {
+      alert('개인정보 동의가 필요합니다.');
+      return;
+    }
+    const num = String(Math.floor(10000 + Math.random() * 90000));
+    document.getElementById('refNum').textContent = 'JCP-2026-' + num;
+  }
+  currentStep = from + 1;
+  updateStep();
+  window.scrollTo(0, 0);
+}
+
+// Phone auto-hyphen
+document.getElementById('phone').addEventListener('input', function(e) {
+  let v = e.target.value.replace(/[^0-9]/g, '');
+  if (v.length > 3 && v.length <= 7) v = v.slice(0,3) + '-' + v.slice(3);
+  else if (v.length > 7) v = v.slice(0,3) + '-' + v.slice(3,7) + '-' + v.slice(7,11);
+  e.target.value = v;
+});
+
+function doVerify() {
+  document.getElementById('verifySuccess').style.display = 'flex';
+  document.getElementById('verifyBtn').style.display = 'none';
+  document.getElementById('step3Next').disabled = false;
+  verified = true;
+}
+
+function showFileName(input, targetId) {
+  const names = Array.from(input.files).map(f => f.name).join(', ');
+  document.getElementById(targetId).textContent = names;
+}
+
+function toggleSubmit() {
+  document.getElementById('submitBtn').disabled = !document.getElementById('privacy').checked;
+}
+
+function calculate() {
+  const price = parseFloat(document.getElementById('price').value) || 0;
+  const days = parseFloat(document.getElementById('days').value) || 0;
+  const rate = parseFloat(document.getElementById('rate').value);
+  const penalty = price * rate * days;
+  const interest = price * 0.3 * 0.05 / 365 * days;
+  const total = penalty + interest;
+  const fmt = (n) => Math.round(n).toLocaleString('ko-KR');
+  document.getElementById('totalResult').textContent = '약 ' + fmt(Math.round(total)) + '만원';
+  document.getElementById('resultDetail').textContent = '지체상금 ' + fmt(Math.round(penalty)) + '만원 + 연체이자 ' + fmt(Math.round(interest)) + '만원';
+}
+
+calculate();
+</script>
+</body>
+</html>
