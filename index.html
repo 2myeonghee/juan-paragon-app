@@ -23,14 +23,14 @@ body{font-family:'WantedSans',-apple-system,system-ui,'Segoe UI',Roboto,sans-ser
 .progress-bar{height:3px;background:#E2E8F0;border-radius:2px;margin-top:4px;}
 .progress-fill{height:100%;background:var(--a);border-radius:2px;transition:width .3s;}
 /* Hero */
-.hero{flex:1;background:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.7)),url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80') center/cover;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:40px 24px 20px;min-height:50vh;}
-.hero .pill{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:11px;font-weight:600;padding:4px 14px;border-radius:20px;margin-bottom:16px;letter-spacing:.5px;}
+.hero{flex:1;background:linear-gradient(160deg,rgba(44,62,80,.85) 0%,rgba(26,115,232,.4) 100%),url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80') center/cover;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:40px 24px 20px;min-height:50vh;}
+.hero .pill{display:inline-block;background:rgba(26,115,232,.3);border:1px solid rgba(26,115,232,.5);color:#fff;font-size:11px;font-weight:700;padding:5px 16px;border-radius:20px;margin-bottom:16px;letter-spacing:.5px;backdrop-filter:blur(4px);}
 .hero h1{color:#fff;font-size:26px;font-weight:800;line-height:1.35;margin-bottom:10px;word-break:keep-all;}
 .hero .sub{color:#CBD5E1;font-size:13px;margin-bottom:6px;}
 .hero .fee{color:#94A3B8;font-size:11px;margin-bottom:28px;}
 /* Menu cards */
 .menu-cards{padding:0 20px 32px;display:flex;flex-direction:column;gap:10px;max-width:600px;margin:0 auto;width:100%;}
-.menu-card{background:var(--w);border:1px solid var(--bd);border-radius:var(--r);padding:18px 20px;display:flex;align-items:center;gap:16px;cursor:pointer;transition:box-shadow .2s,transform .1s;-webkit-tap-highlight-color:transparent;}
+.menu-card{background:var(--w);border:1px solid var(--bd);border-left:3px solid var(--a);border-radius:var(--r);padding:18px 20px;display:flex;align-items:center;gap:16px;cursor:pointer;transition:box-shadow .2s,transform .1s;-webkit-tap-highlight-color:transparent;}
 .menu-card:active{transform:scale(.98)}
 .menu-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.08);}
 .mc-icon{width:44px;height:44px;border-radius:10px;background:rgba(26,115,232,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
@@ -65,43 +65,43 @@ textarea.fi{height:100px;padding:12px 14px;resize:vertical;}
 .file-list{font-size:12px;color:var(--ts);margin-bottom:12px;}
 /* CTA */
 .cta{width:100%;height:52px;background:var(--p);color:var(--w);font-size:16px;font-weight:700;border:none;border-radius:8px;cursor:pointer;font-family:inherit;transition:background .2s;margin-top:8px;-webkit-tap-highlight-color:transparent;}
-.cta:active{background:#1A2634;}
+.cta:active{background:#1A2634;}.cta{box-shadow:0 2px 8px rgba(44,62,80,.15);}
 .cta.secondary{background:var(--a);}
 .cta:disabled{background:#93B4D1;cursor:not-allowed;}
 /* Verify */
 .verify-done{background:#F0FDF4;border:1px solid #86EFAC;border-radius:8px;padding:14px;text-align:center;font-size:14px;font-weight:600;color:#065F46;margin:12px 0;}
 /* Complete */
 .complete{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;text-align:center;}
-.check-circle{width:120px;height:120px;border-radius:50%;background:#DBEAFE;display:flex;align-items:center;justify-content:center;margin-bottom:24px;animation:bounceIn .5s ease;}
+.check-circle{width:120px;height:120px;border-radius:50%;background:linear-gradient(135deg,#DBEAFE,#E0E7FF);display:flex;align-items:center;justify-content:center;margin-bottom:24px;animation:bounceIn .5s ease;}
 .check-circle svg{width:48px;height:48px;}
 .check-circle svg path{stroke-dasharray:60;stroke-dashoffset:60;animation:drawCheck .6s .3s forwards;}
 .complete h2{font-size:22px;font-weight:800;color:var(--p);margin-bottom:8px;line-height:1.4;}
 .complete .ref{font-size:13px;color:var(--a);font-weight:600;margin-bottom:6px;}
 .complete .note{font-size:13px;color:var(--tm);margin-bottom:28px;}
 /* Calculator */
-.calc-result{background:var(--w);border:2px solid var(--a);border-radius:var(--r);padding:24px;text-align:center;margin:20px 0;}
+.calc-result{background:linear-gradient(135deg,#F0F7FF,#EEF2FF);border:none;border-radius:var(--r);padding:28px;text-align:center;margin:20px 0;box-shadow:0 4px 20px rgba(26,115,232,.1);}
 .calc-result .label{font-size:12px;color:var(--tm);margin-bottom:4px;}
 .calc-result .amount{font-size:36px;font-weight:800;color:var(--p);}
 .calc-detail{font-size:12px;color:var(--ts);margin-top:8px;}
 .calc-note{font-size:11px;color:var(--tm);background:#FFF7ED;border-radius:6px;padding:10px 12px;margin:12px 0;}
 /* Info page */
 .info-page{padding:20px;max-width:800px;margin:0 auto;}
-.info-page h2{font-size:20px;font-weight:800;color:var(--p);margin:24px 0 12px;padding-bottom:6px;border-bottom:2px solid var(--p);}
+.info-page h2{font-size:20px;font-weight:800;color:var(--p);margin:24px 0 14px;padding-bottom:8px;border-bottom:none;position:relative;}.info-page h2::after{content:"";position:absolute;bottom:0;left:0;width:40px;height:3px;background:var(--a);border-radius:2px;}
 .timeline{margin:16px 0;}
 .tl-item{display:flex;gap:12px;margin-bottom:12px;}
-.tl-dot{width:10px;height:10px;border-radius:50%;background:var(--a);margin-top:5px;flex-shrink:0;}
+.tl-dot{width:10px;height:10px;border-radius:50%;background:var(--a);margin-top:5px;flex-shrink:0;position:relative;}
 .tl-date{font-size:12px;font-weight:600;color:var(--a);width:80px;flex-shrink:0;}
 .tl-text{font-size:13px;color:var(--ts);flex:1;}
 .problem-cards{display:grid;gap:10px;margin:12px 0;}
-.pc{background:var(--w);border:1px solid var(--bd);border-radius:8px;padding:14px 16px;}
+.pc{background:var(--w);border:1px solid var(--bd);border-left:3px solid var(--a);border-radius:8px;padding:14px 16px;transition:box-shadow .2s;}.pc:hover{box-shadow:0 2px 12px rgba(0,0,0,.06);}
 .pc-title{font-size:14px;font-weight:700;color:var(--p);margin-bottom:4px;}
 .pc-desc{font-size:12px;color:var(--ts);}
 .case-table{width:100%;border-collapse:collapse;font-size:11px;margin:12px 0;}
-.case-table th{background:#F0F2F5;font-weight:600;text-align:left;padding:8px;border-bottom:1px solid var(--bd);}
+.case-table th{background:var(--p);color:var(--w);font-weight:600;text-align:left;padding:10px 8px;border-bottom:none;font-size:11px;}
 .case-table td{padding:7px 8px;border-bottom:1px solid #F1F5F9;}
 .case-table .win{color:#065F46;font-weight:600;}
 .case-table .ongoing{color:#D97706;font-weight:600;}
-.firm-box{background:var(--p);color:var(--w);border-radius:var(--r);padding:24px;margin:20px 0;text-align:center;}
+.firm-box{background:linear-gradient(135deg,#2C3E50,#34495E);color:var(--w);border-radius:var(--r);padding:24px;margin:20px 0;text-align:center;}
 .firm-box h3{font-size:16px;font-weight:700;margin-bottom:8px;}
 .firm-box p{font-size:12px;color:#CBD5E1;margin-bottom:4px;}
 .firm-box a{color:var(--w);text-decoration:underline;}
@@ -212,7 +212,7 @@ textarea.fi{height:100px;padding:12px 14px;resize:vertical;}
     <div class="desc">분양가와 지연일수를 입력하면 예상 배상금을 계산합니다</div>
     <div class="fg"><label class="fl">분양가 (만원)</label><input class="fi" id="cPrice" type="number" placeholder="예: 35000" oninput="calcDamage()"></div>
     <div class="fg"><label class="fl">입주 지연일수</label><input class="fi" id="cDays" type="number" value="120" oninput="calcDamage()"></div>
-    <div class="fg"><label class="fl">지체상금 요율</label><select class="fs" id="cRate" onchange="calcDamage()"><option value="0.001">1/1000 (공사계약 표준)</option><option value="0.0015">1.5/1000</option><option value="0.002">2/1000</option><option value="0.003">3/1000</option></select></div>
+    <div class="fg"><label class="fl">지체상금 요율</label><select class="fs" id="cRate" onchange="calcDamage()"><option value="0.001">0.1% (공사계약 표준)</option><option value="0.0015">0.15%</option><option value="0.002">0.2%</option><option value="0.003">0.3%</option></select></div>
     <div class="calc-result">
       <div class="label">예상 총 배상금</div>
       <div class="amount" id="calcTotal">0만원</div>
