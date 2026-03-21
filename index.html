@@ -1660,7 +1660,7 @@
           alert('인증번호를 입력해주세요');
           return;
         }
-        const phone = document.getElementById('aVPhone').value.trim();
+        const phone = document.getElementById('aVPhone').value.trim().replace(/-/g, '');
         try {
           const params = new URLSearchParams({ phone: phone, code: code });
           const res = await fetch(
