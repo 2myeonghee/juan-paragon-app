@@ -469,6 +469,117 @@
         font-weight: 500;
         margin-bottom: 14px;
       }
+      .file-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 8px;
+        margin-bottom: 14px;
+      }
+      .file-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--w);
+        border: 1px solid var(--bd);
+        border-radius: 10px;
+        padding: 8px 12px;
+      }
+      .file-item .file-thumb {
+        width: 40px;
+        height: 40px;
+        border-radius: 6px;
+        object-fit: cover;
+        background: var(--bg);
+        flex-shrink: 0;
+      }
+      .file-item .file-thumb-pdf {
+        width: 40px;
+        height: 40px;
+        border-radius: 6px;
+        background: #fee2e2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        font-weight: 700;
+        color: #dc2626;
+        flex-shrink: 0;
+      }
+      .file-item .file-name {
+        flex: 1;
+        font-size: 13px;
+        color: var(--t);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .file-item .file-size {
+        font-size: 11px;
+        color: var(--tm);
+        flex-shrink: 0;
+      }
+      .file-item .file-remove {
+        width: 28px;
+        height: 28px;
+        border: none;
+        background: var(--bg);
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: background 0.15s;
+      }
+      .file-item .file-remove:hover {
+        background: #fee2e2;
+      }
+      .file-item .file-remove svg {
+        width: 14px;
+        height: 14px;
+        stroke: var(--ts);
+      }
+      .file-preview-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,.7);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        animation: fadeIn 0.2s;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      .file-preview-overlay img {
+        max-width: 100%;
+        max-height: 85vh;
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(0,0,0,.3);
+      }
+      .file-preview-close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        width: 36px;
+        height: 36px;
+        border: none;
+        background: rgba(255,255,255,.2);
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .file-preview-close svg {
+        width: 20px;
+        height: 20px;
+        stroke: #fff;
+      }
 
       /* ─── CTA BUTTON ─── */
       .cta {
@@ -1207,7 +1318,7 @@
               type="file"
               id="pdfFile"
               accept="image/*,.pdf"
-              onchange="uf(this, 'fn1', 'uz1')"
+              onchange="uf(this)"
             /><svg
               width="28"
               height="28"
@@ -1222,7 +1333,7 @@
             </svg>
             <p><b>파일 선택</b> 또는 드래그</p>
           </div>
-          <div id="fn1" class="file-info"></div>
+          <div id="fn1" class="file-list"></div>
         </div>
         <div class="fg">
           <label class="fl">단지 내 하자 사진</label>
@@ -1236,7 +1347,7 @@
               id="imageFile"
               accept="image/*"
               multiple
-              onchange="ufs(this, 'fn2', 'uz2')"
+              onchange="ufs(this)"
             /><svg
               width="28"
               height="28"
@@ -1251,7 +1362,7 @@
             </svg>
             <p><b>사진 선택</b> (최대 5장)</p>
           </div>
-          <div id="fn2" class="file-info"></div>
+          <div id="fn2" class="file-list"></div>
         </div>
         <div class="cb-wrap">
           <input type="checkbox" id="agr" /><span
@@ -1699,14 +1810,12 @@
           formData.append('net_area', document.getElementById('aArea').value.trim());
           formData.append('privacy_policy_agreed', document.getElementById('agr').checked);
 
-          const pdfInput = document.getElementById('pdfFile');
-          if (pdfInput.files.length > 0) {
-            formData.append('pdfFile', pdfInput.files[0]);
+          if (pdfFiles.files.length > 0) {
+            formData.append('pdfFile', pdfFiles.files[0]);
           }
 
-          const imageInput = document.getElementById('imageFile');
-          for (let i = 0; i < imageInput.files.length; i++) {
-            formData.append('imageFile', imageInput.files[i]);
+          for (let i = 0; i < imageFiles.files.length; i++) {
+            formData.append('imageFile', imageFiles.files[i]);
           }
 
           const res = await fetch(API_BASE + '/applicants', {
@@ -1745,28 +1854,109 @@
           v = v.slice(0, 3) + '-' + v.slice(3, 7) + '-' + v.slice(7, 11);
         this.value = v;
       });
-      function uf(el, tid, zid) {
-        document.getElementById(tid).textContent = el.files[0]
-          ? el.files[0].name
-          : '';
-        document
-          .getElementById(zid)
-          .classList.toggle('has-file', !!el.files[0]);
+      let pdfFiles = new DataTransfer();
+      let imageFiles = new DataTransfer();
+
+      function formatFileSize(bytes) {
+        if (bytes < 1024) return bytes + ' B';
+        if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+        return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
       }
-      function ufs(el, tid, zid) {
-        if (el.files.length > 5) {
+
+      function makeRemoveSvg() {
+        return '<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+      }
+
+      function openPreview(src) {
+        const overlay = document.createElement('div');
+        overlay.className = 'file-preview-overlay';
+        overlay.onclick = function () { overlay.remove(); };
+        overlay.innerHTML =
+          '<button class="file-preview-close" onclick="event.stopPropagation();this.parentElement.remove()">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>' +
+          '</button><img src="' + src + '">';
+        document.body.appendChild(overlay);
+      }
+
+      function renderFileList(dt, listId, zoneId, inputId) {
+        var list = document.getElementById(listId);
+        list.innerHTML = '';
+        var zone = document.getElementById(zoneId);
+        zone.classList.toggle('has-file', dt.files.length > 0);
+        for (var i = 0; i < dt.files.length; i++) {
+          (function (idx) {
+            var file = dt.files[idx];
+            var item = document.createElement('div');
+            item.className = 'file-item';
+            var isImage = file.type.startsWith('image/');
+            if (isImage) {
+              var img = document.createElement('img');
+              img.className = 'file-thumb';
+              img.src = URL.createObjectURL(file);
+              img.style.cursor = 'pointer';
+              img.onclick = function (e) { e.stopPropagation(); openPreview(this.src); };
+              item.appendChild(img);
+            } else {
+              var pdfIcon = document.createElement('div');
+              pdfIcon.className = 'file-thumb-pdf';
+              pdfIcon.textContent = 'PDF';
+              item.appendChild(pdfIcon);
+            }
+            var nameSpan = document.createElement('span');
+            nameSpan.className = 'file-name';
+            nameSpan.textContent = file.name;
+            item.appendChild(nameSpan);
+            var sizeSpan = document.createElement('span');
+            sizeSpan.className = 'file-size';
+            sizeSpan.textContent = formatFileSize(file.size);
+            item.appendChild(sizeSpan);
+            var btn = document.createElement('button');
+            btn.className = 'file-remove';
+            btn.type = 'button';
+            btn.innerHTML = makeRemoveSvg();
+            btn.onclick = function (e) {
+              e.stopPropagation();
+              var newDt = new DataTransfer();
+              for (var j = 0; j < dt.files.length; j++) {
+                if (j !== idx) newDt.items.add(dt.files[j]);
+              }
+              if (inputId === 'pdfFile') { pdfFiles = newDt; } else { imageFiles = newDt; }
+              document.getElementById(inputId).files = newDt.files;
+              renderFileList(newDt, listId, zoneId, inputId);
+            };
+            item.appendChild(btn);
+            list.appendChild(item);
+          })(i);
+        }
+      }
+
+      function uf(el) {
+        if (el.files[0]) {
+          pdfFiles = new DataTransfer();
+          pdfFiles.items.add(el.files[0]);
+          el.files = pdfFiles.files;
+        } else {
+          pdfFiles = new DataTransfer();
+        }
+        renderFileList(pdfFiles, 'fn1', 'uz1', 'pdfFile');
+      }
+
+      function ufs(el) {
+        var combined = new DataTransfer();
+        for (var i = 0; i < imageFiles.files.length; i++) {
+          combined.items.add(imageFiles.files[i]);
+        }
+        for (var i = 0; i < el.files.length; i++) {
+          combined.items.add(el.files[i]);
+        }
+        if (combined.files.length > 5) {
           alert('최대 5개 파일까지 업로드할 수 있습니다.');
           el.value = '';
-          document.getElementById(tid).textContent = '';
-          document.getElementById(zid).classList.remove('has-file');
           return;
         }
-        document.getElementById(tid).textContent = el.files.length
-          ? el.files.length + '개 파일'
-          : '';
-        document
-          .getElementById(zid)
-          .classList.toggle('has-file', !!el.files.length);
+        imageFiles = combined;
+        el.files = imageFiles.files;
+        renderFileList(imageFiles, 'fn2', 'uz2', 'imageFile');
       }
       function calc() {
         let p = +document.getElementById('cP').value || 0,
