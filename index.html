@@ -1205,6 +1205,7 @@
           >
             <input
               type="file"
+              id="pdfFile"
               accept="image/*,.pdf"
               onchange="uf(this, 'fn1', 'uz1')"
             /><svg
@@ -1232,6 +1233,7 @@
           >
             <input
               type="file"
+              id="imageFile"
               accept="image/*"
               multiple
               onchange="ufs(this, 'fn2', 'uz2')"
@@ -1247,7 +1249,7 @@
               <circle cx="8.5" cy="8.5" r="1.5" />
               <path d="M21 15l-5-5L5 21" />
             </svg>
-            <p><b>사진 선택</b> (여러장 가능)</p>
+            <p><b>사진 선택</b> (최대 5장)</p>
           </div>
           <div id="fn2" class="file-info"></div>
         </div>
@@ -1582,7 +1584,7 @@
             alert('이름을 정확히 입력해주세요. (한글 또는 영문 2자 이상)');
             return;
           }
-          if (!validatePhone(document.getElementById('aPhone').value)) {
+          if (!validatePhone(document.getElementById('aPhone').value.trim().replace(/-/g, ''))) {
             alert('연락처를 정확히 입력해주세요. (010으로 시작하는 11자리)');
             return;
           }
@@ -1688,18 +1690,28 @@
         btn.disabled = true;
         btn.textContent = '접수 중...';
         try {
+          const formData = new FormData();
+          formData.append('name', document.getElementById('aName').value.trim());
+          formData.append('phone', document.getElementById('aPhone').value.trim().replace(/-/g, ''));
+          formData.append('birth_date', document.getElementById('aBirth').value.trim());
+          formData.append('building', document.getElementById('aDong').value.trim());
+          formData.append('unit', document.getElementById('aHo').value.trim());
+          formData.append('net_area', document.getElementById('aArea').value.trim());
+          formData.append('privacy_policy_agreed', document.getElementById('agr').checked);
+
+          const pdfInput = document.getElementById('pdfFile');
+          if (pdfInput.files.length > 0) {
+            formData.append('pdfFile', pdfInput.files[0]);
+          }
+
+          const imageInput = document.getElementById('imageFile');
+          for (let i = 0; i < imageInput.files.length; i++) {
+            formData.append('imageFile', imageInput.files[i]);
+          }
+
           const res = await fetch(API_BASE + '/applicants', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              name: document.getElementById('aName').value.trim(),
-              phone: document.getElementById('aPhone').value.trim(),
-              birth_date: document.getElementById('aBirth').value.trim(),
-              building: document.getElementById('aDong').value.trim(),
-              unit: document.getElementById('aHo').value.trim(),
-              net_area: document.getElementById('aArea').value.trim(),
-              privacy_policy_agreed: document.getElementById('agr').checked,
-            }),
+            body: formData,
           });
           const data = await res.json();
           if (res.ok && data.success) {
@@ -1742,6 +1754,13 @@
           .classList.toggle('has-file', !!el.files[0]);
       }
       function ufs(el, tid, zid) {
+        if (el.files.length > 5) {
+          alert('최대 5개 파일까지 업로드할 수 있습니다.');
+          el.value = '';
+          document.getElementById(tid).textContent = '';
+          document.getElementById(zid).classList.remove('has-file');
+          return;
+        }
         document.getElementById(tid).textContent = el.files.length
           ? el.files.length + '개 파일'
           : '';
