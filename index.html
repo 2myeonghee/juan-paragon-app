@@ -1811,11 +1811,11 @@
           formData.append('privacy_policy_agreed', document.getElementById('agr').checked);
 
           if (pdfFiles.files.length > 0) {
-            formData.append('pdfFile', pdfFiles.files[0]);
+            formData.append('file', pdfFiles.files[0]);
           }
 
           for (let i = 0; i < imageFiles.files.length; i++) {
-            formData.append('imageFile', imageFiles.files[i]);
+            formData.append('defectFile', imageFiles.files[i]);
           }
 
           const res = await fetch(API_BASE + '/applicants', {
